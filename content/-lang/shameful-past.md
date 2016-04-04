@@ -1,6 +1,6 @@
 title: Shameful Past
 date: 2005-10-24
-tags: python, shame on you, nearest neighbor
+tags: python, nearest neighbor
 
 A few hours ago, when I was dealing with my thesis, I've come up with a Python function that constructs a tour for a given [TSP](http://www.tsp.gatech.edu/) instance using the [nearest neighbor heuristic](http://en.wikipedia.org/wiki/Nearest_neighbour_algorithm):
 
