@@ -105,7 +105,7 @@
 
 			<h1>
 				<a href="/">
-					<img class="profile-picture" src="/images/me.png">
+					<img class="profile-picture" src="http://yuce.me/images/me.png">
 					<span class="sitename">yüce's blog</span>
 				</a>
 			</h1>
@@ -121,8 +121,38 @@
 </div>		<div class="content container">
 	<div class="posts">
                 <div class="post">
-                    <h1 class="post-title" href="/reportlab-on-osx.html#reportlab-on-osx">
-                        <a href="/reportlab-on-osx.html#reportlab-on-osx">ReportLab on OSX</a>
+                    <h1 class="post-title" href="http://yuce.me/erlang-file-upload.html#erlang-file-upload">
+                        <a href="http://yuce.me/erlang-file-upload.html#erlang-file-upload">Erlang File Upload</a>
+                    </h1>
+                    <span class="post-date">2014-11-19</span>
+                    <p>
+                        <p>Here's an Erlang file upload example.</p>
+<div class="highlight"><pre><span class="p">-</span><span class="ni">define</span><span class="p">(</span><span class="no">CRLF</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">).</span>
+
+<span class="nf">upload</span><span class="p">(</span><span class="nv">Binary</span><span class="p">,</span> <span class="nv">FileName</span><span class="p">,</span> <span class="nv">FieldName</span><span class="p">,</span> <span class="nv">Url</span><span class="p">)</span> <span class="o">-&gt;</span>
+    <span class="nv">BinFileName</span> <span class="o">=</span> <span class="nb">list_to_binary</span><span class="p">(</span><span class="nv">FileName</span><span class="p">),</span>
+    <span class="nv">BinFieldName</span> <span class="o">=</span> <span class="nb">list_to_binary</span><span class="p">(</span><span class="nv">FieldName</span><span class="p">),</span>
+    <span class="nv">Boundary</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="s">&quot;Uploader&quot;</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+    <span class="nv">Body</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="s">&quot;--&quot;</span><span class="p">,</span> <span class="nv">Boundary</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
+             <span class="s">&quot;Content-Disposition: form-data; name=</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
+                <span class="nv">BinFieldName</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span>
+                <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">; filename=</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">BinFileName</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
+             <span class="s">&quot;Content-Type: application/octet-stream&quot;</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
+             <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
+             <span class="nv">Binary</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
+             <span class="s">&quot;--&quot;</span><span class="p">,</span> <span class="nv">Boundary</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="s">&quot;--&quot;</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
+             <span class="o">?</span><span class="nv">CRLF</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+    <span class="nv">ContentType ...</span></pre></div>
+                    </p>
+                    <div class="index-tag-box">
+                            <span class="tag">erlang</span>
+                            <span class="tag">file upload</span>
+                        <a class="read-more" href="erlang-file-upload.html">&laquo; READ MORE &raquo;</a>
+                    </div>
+                </div>
+                <div class="post">
+                    <h1 class="post-title" href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">
+                        <a href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">ReportLab on OSX</a>
                     </h1>
                     <span class="post-date">2012-11-03</span>
                     <p>
@@ -144,8 +174,8 @@
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/prometheus-the-movie.html#prometheus-the-movie">
-                        <a href="/prometheus-the-movie.html#prometheus-the-movie">Prometheus - The Movie</a>
+                    <h1 class="post-title" href="http://yuce.me/prometheus-the-movie.html#prometheus-the-movie">
+                        <a href="http://yuce.me/prometheus-the-movie.html#prometheus-the-movie">Prometheus - The Movie</a>
                     </h1>
                     <span class="post-date">2012-06-11</span>
                     <p>
@@ -165,8 +195,8 @@
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/compiling-python-extension-modules-on-mac-osx-106.html#compiling-python-extension-modules-on-mac-osx-106">
-                        <a href="/compiling-python-extension-modules-on-mac-osx-106.html#compiling-python-extension-modules-on-mac-osx-106">Compiling Python Extension Modules on Mac OSX 10.6</a>
+                    <h1 class="post-title" href="http://yuce.me/compiling-python-extension-modules-on-mac-osx-106.html#compiling-python-extension-modules-on-mac-osx-106">
+                        <a href="http://yuce.me/compiling-python-extension-modules-on-mac-osx-106.html#compiling-python-extension-modules-on-mac-osx-106">Compiling Python Extension Modules on Mac OSX 10.6</a>
                     </h1>
                     <span class="post-date">2011-05-27</span>
                     <p>
@@ -184,8 +214,8 @@ Installed assemblers are:
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/installing-flash-on-open-solaris-snv_132.html#installing-flash-on-open-solaris-snv_132">
-                        <a href="/installing-flash-on-open-solaris-snv_132.html#installing-flash-on-open-solaris-snv_132">Installing Flash on Open Solaris snv_132</a>
+                    <h1 class="post-title" href="http://yuce.me/installing-flash-on-open-solaris-snv_132.html#installing-flash-on-open-solaris-snv_132">
+                        <a href="http://yuce.me/installing-flash-on-open-solaris-snv_132.html#installing-flash-on-open-solaris-snv_132">Installing Flash on Open Solaris snv_132</a>
                     </h1>
                     <span class="post-date">2010-02-16</span>
                     <p>
@@ -214,8 +244,8 @@ pfexec cp ~/Downloads/flash_player_10_solaris_r42_34_x86/libflashplayer.so /usr/
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/go-sample-link-checker.html#go-sample-link-checker">
-                        <a href="/go-sample-link-checker.html#go-sample-link-checker">Go Sample: Link Checker</a>
+                    <h1 class="post-title" href="http://yuce.me/go-sample-link-checker.html#go-sample-link-checker">
+                        <a href="http://yuce.me/go-sample-link-checker.html#go-sample-link-checker">Go Sample: Link Checker</a>
                     </h1>
                     <span class="post-date">2009-11-14</span>
                     <p>
@@ -230,8 +260,8 @@ To be honest, it is one of the ugliest languages I've ever used (<em>I mean amon
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/getting-the-current-module-in-python.html#getting-the-current-module-in-python">
-                        <a href="/getting-the-current-module-in-python.html#getting-the-current-module-in-python">Getting the Current Module in Python</a>
+                    <h1 class="post-title" href="http://yuce.me/getting-the-current-module-in-python.html#getting-the-current-module-in-python">
+                        <a href="http://yuce.me/getting-the-current-module-in-python.html#getting-the-current-module-in-python">Getting the Current Module in Python</a>
                     </h1>
                     <span class="post-date">2009-10-15</span>
                     <p>
@@ -256,8 +286,8 @@ How can you do that? Of course, you start with getting the module name:</p>
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/merging-pdf-files-using-ghostscript.html#merging-pdf-files-using-ghostscript">
-                        <a href="/merging-pdf-files-using-ghostscript.html#merging-pdf-files-using-ghostscript">Merging PDF Files Using Ghostscript</a>
+                    <h1 class="post-title" href="http://yuce.me/merging-pdf-files-using-ghostscript.html#merging-pdf-files-using-ghostscript">
+                        <a href="http://yuce.me/merging-pdf-files-using-ghostscript.html#merging-pdf-files-using-ghostscript">Merging PDF Files Using Ghostscript</a>
                     </h1>
                     <span class="post-date">2009-10-14</span>
                     <p>
@@ -274,8 +304,8 @@ Here's the command line:</p>
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/pyswip-facts-and-rules.html#pyswip-facts-and-rules">
-                        <a href="/pyswip-facts-and-rules.html#pyswip-facts-and-rules">PySWIP: Facts and Rules</a>
+                    <h1 class="post-title" href="http://yuce.me/pyswip-facts-and-rules.html#pyswip-facts-and-rules">
+                        <a href="http://yuce.me/pyswip-facts-and-rules.html#pyswip-facts-and-rules">PySWIP: Facts and Rules</a>
                     </h1>
                     <span class="post-date">2009-10-08</span>
                     <p>
@@ -295,8 +325,8 @@ Here's a small tutorial on adding facts and rules to prolog knowledgebase.</p>
                     </div>
                 </div>
                 <div class="post">
-                    <h1 class="post-title" href="/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">
-                        <a href="/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">Getting the Currently Playing Song Info on Amarok via DCOP</a>
+                    <h1 class="post-title" href="http://yuce.me/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">
+                        <a href="http://yuce.me/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">Getting the Currently Playing Song Info on Amarok via DCOP</a>
                     </h1>
                     <span class="post-date">2009-08-13</span>
                     <p>
@@ -325,7 +355,7 @@ It works on KDE 3.5 with Amarok 1.4 (<em>won't work on KDE 4</em>)</p>
 
 		<span class="pagination-item older">&laquo; Newer</span>
 
-		<span class="pagination-item newer"><a href="/author/yuce-tekol2.html">Older &raquo;</a></span>
+		<span class="pagination-item newer"><a href="http://yuce.me/author/yuce-tekol2.html">Older &raquo;</a></span>
 	</div>
 		</div>
 	</body>
