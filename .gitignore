@@ -1,0 +1,4 @@
+output/
+pelican-themes/
+themes/
+*.pid
