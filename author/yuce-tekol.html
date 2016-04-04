@@ -121,36 +121,6 @@
 </div>		<div class="content container">
 	<div class="posts">
                 <div class="post">
-                    <h1 class="post-title" href="http://yuce.me/erlang-file-upload.html#erlang-file-upload">
-                        <a href="http://yuce.me/erlang-file-upload.html#erlang-file-upload">Erlang File Upload</a>
-                    </h1>
-                    <span class="post-date">2014-11-19</span>
-                    <p>
-                        <p>Here's an Erlang file upload example.</p>
-<div class="highlight"><pre><span class="p">-</span><span class="ni">define</span><span class="p">(</span><span class="no">CRLF</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">).</span>
-
-<span class="nf">upload</span><span class="p">(</span><span class="nv">Binary</span><span class="p">,</span> <span class="nv">FileName</span><span class="p">,</span> <span class="nv">FieldName</span><span class="p">,</span> <span class="nv">Url</span><span class="p">)</span> <span class="o">-&gt;</span>
-    <span class="nv">BinFileName</span> <span class="o">=</span> <span class="nb">list_to_binary</span><span class="p">(</span><span class="nv">FileName</span><span class="p">),</span>
-    <span class="nv">BinFieldName</span> <span class="o">=</span> <span class="nb">list_to_binary</span><span class="p">(</span><span class="nv">FieldName</span><span class="p">),</span>
-    <span class="nv">Boundary</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="s">&quot;Uploader&quot;</span><span class="o">&gt;&gt;</span><span class="p">,</span>
-    <span class="nv">Body</span> <span class="o">=</span> <span class="o">&lt;&lt;</span><span class="s">&quot;--&quot;</span><span class="p">,</span> <span class="nv">Boundary</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
-             <span class="s">&quot;Content-Disposition: form-data; name=</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span>
-                <span class="nv">BinFieldName</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span>
-                <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">; filename=</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">BinFileName</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
-             <span class="s">&quot;Content-Type: application/octet-stream&quot;</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
-             <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
-             <span class="nv">Binary</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
-             <span class="s">&quot;--&quot;</span><span class="p">,</span> <span class="nv">Boundary</span><span class="o">/</span><span class="n">binary</span><span class="p">,</span> <span class="s">&quot;--&quot;</span><span class="p">,</span> <span class="o">?</span><span class="nv">CRLF</span><span class="p">,</span>
-             <span class="o">?</span><span class="nv">CRLF</span><span class="o">&gt;&gt;</span><span class="p">,</span>
-    <span class="nv">ContentType ...</span></pre></div>
-                    </p>
-                    <div class="index-tag-box">
-                            <span class="tag">erlang</span>
-                            <span class="tag">file upload</span>
-                        <a class="read-more" href="erlang-file-upload.html">&laquo; READ MORE &raquo;</a>
-                    </div>
-                </div>
-                <div class="post">
                     <h1 class="post-title" href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">
                         <a href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">ReportLab on OSX</a>
                     </h1>
