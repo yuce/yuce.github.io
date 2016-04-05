@@ -77,7 +77,8 @@ div.article-tag-box {
     margin-bottom: 15px;
 }
 
-span.tag {
+div.tag {
+    display: inline-block;
     border: 1px solid cadetblue;
     padding-left: 3px;
     padding-right: 3px;
@@ -89,7 +90,12 @@ span.tag {
 
 a.read-more {
     border: unset;
+    padding: unset;
     color: #268BD2 !important;
+}
+
+div.read-more {
+    border: unset;
 }
 
 span.pagination-item {
