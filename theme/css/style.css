@@ -18,14 +18,15 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 16rem;
+    /*width: 16rem;*/
     text-align: center;
   }
 }
 
 .content {
-    margin-left: 18em;
-    margin-right: 2em;
+    /*margin-left: 18em;
+    margin-right: 2em;*/
+    padding-bottom: unset;
 }
 
 .tag-cloud {
@@ -70,6 +71,7 @@ nav.sidebar-nav {
 
 div.index-tag-box {
     text-align: right;
+    margin-top: 4px;
 }
 
 div.article-tag-box {
@@ -96,8 +98,14 @@ a.read-more {
 
 div.read-more {
     border: unset;
+    padding: unset;
+    text-align: right;
 }
 
 span.pagination-item {
     border: unset;
+}
+
+p.footer {
+    text-align: center;
 }
