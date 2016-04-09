@@ -138,7 +138,7 @@ downloaded the <code>gnatsd</code> executable and placed it in <code>/opt/bin/gn
 
 <span class="k">[Service]</span>
 <span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/bin/gnatsd</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
 
 <span class="k">[Install]</span>
 <span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
