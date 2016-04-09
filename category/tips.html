@@ -66,6 +66,7 @@
             infix&nbsp;
             Istanbul&nbsp;
             KDE&nbsp;
+            letsencrypt&nbsp;
             link checker&nbsp;
             linux&nbsp;
             mac&nbsp;
@@ -74,6 +75,7 @@
             marvin3&nbsp;
             me&nbsp;
             movie&nbsp;
+            nats&nbsp;
             nearest neighbor&nbsp;
             open solaris&nbsp;
             osx&nbsp;
@@ -90,9 +92,12 @@
             reportlab&nbsp;
             send more money&nbsp;
             sendmory&nbsp;
+            ssl&nbsp;
             strings&nbsp;
+            systemd&nbsp;
             tip&nbsp;
             tips&nbsp;
+            tls&nbsp;
             tricks&nbsp;
             ubuntu&nbsp;
         </p>
@@ -118,6 +123,28 @@
 	</div>
 </div>		<div class="content container">
 	<div class="posts">
+                <div class="post">
+                    <h1 class="post-title" href="http://yuce.me/a-simple-systemd-service-for-nats.html#a-simple-systemd-service-for-nats">
+                        <a href="http://yuce.me/a-simple-systemd-service-for-nats.html#a-simple-systemd-service-for-nats">A Simple Systemd Service for NATS</a>
+                    </h1>
+                    <span class="post-date">2016-04-09</span>
+                    <p>
+                        <p>Here's a simple <a href="http://nats.io">NATS</a> <code>gnatsd</code> service for
+<a href="https://www.freedesktop.org/wiki/Software/systemd/">Systemd</a>,
+which starts <code>gnatsd</code> on boot and restarts it in case it
+crashes (<em>which is highly unlikely</em>). I assume you've already
+downloaded the <code>gnatsd</code> executable and placed it in <code>/opt/bin/gnatsd</code>.</p>
+<p>Save the configuraton below as  <code>/etc/systemd/system/gnatsd.service</code>:</p>
+<div class="highlight"><pre><span class="k">[Unit …</span></pre></div>
+                    </p>
+                    <div class="read-more">
+                        <a class="read-more" href="a-simple-systemd-service-for-nats.html">&laquo; READ MORE &raquo;</a>
+                    </div>
+                    <div class="index-tag-box">
+                            <div class="tag">nats</div>
+                            <div class="tag">systemd</div>
+                    </div>
+                </div>
                 <div class="post">
                     <h1 class="post-title" href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">
                         <a href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">ReportLab on OSX</a>

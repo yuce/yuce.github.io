@@ -1,5 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yüce's blog</title><link href="http://yuce.me/" rel="alternate"></link><link href="http://yuce.me/feeds/tips.atom.xml" rel="self"></link><id>http://yuce.me/</id><updated>2012-11-03T00:00:00+02:00</updated><entry><title>ReportLab on OSX</title><link href="http://yuce.me/reportlab-on-osx.html" rel="alternate"></link><updated>2012-11-03T00:00:00+02:00</updated><author><name>Yuce Tekol</name></author><id>tag:yuce.me,2012-11-03:reportlab-on-osx.html</id><summary type="html">&lt;p&gt;It's easy to compile &lt;a href="http://www.reportlab.com/"&gt;ReportLab&lt;/a&gt; on OSX (&lt;em&gt;in my case, 10.8&lt;/em&gt;). The only problem is, you'll get the following warning:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yüce's blog</title><link href="http://yuce.me/" rel="alternate"></link><link href="http://yuce.me/feeds/tips.atom.xml" rel="self"></link><id>http://yuce.me/</id><updated>2016-04-09T00:00:00+03:00</updated><entry><title>A Simple Systemd Service for NATS</title><link href="http://yuce.me/a-simple-systemd-service-for-nats.html" rel="alternate"></link><updated>2016-04-09T00:00:00+03:00</updated><author><name>Yuce Tekol</name></author><id>tag:yuce.me,2016-04-09:a-simple-systemd-service-for-nats.html</id><summary type="html">&lt;p&gt;Here's a simple &lt;a href="http://nats.io"&gt;NATS&lt;/a&gt; &lt;code&gt;gnatsd&lt;/code&gt; service for
+&lt;a href="https://www.freedesktop.org/wiki/Software/systemd/"&gt;Systemd&lt;/a&gt;,
+which starts &lt;code&gt;gnatsd&lt;/code&gt; on boot and restarts it in case it
+crashes (&lt;em&gt;which is highly unlikely&lt;/em&gt;). I assume you've already
+downloaded the &lt;code&gt;gnatsd&lt;/code&gt; executable and placed it in &lt;code&gt;/opt/bin/gnatsd&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Save the configuraton below as  &lt;code&gt;/etc/systemd/system/gnatsd.service&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;[Unit]&lt;/span&gt;
+&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;NATS server&lt;/span&gt;
+
+&lt;span class="k"&gt;[Service]&lt;/span&gt;
+&lt;span class="na"&gt;ExecStart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/bin/gnatsd&lt;/span&gt;
+&lt;span class="na"&gt;Restart&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;on-abort&lt;/span&gt;
+
+&lt;span class="k"&gt;[Install]&lt;/span&gt;
+&lt;span class="na"&gt;WantedBy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;multi-user.target&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can now start the service using:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl start gnatsd.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Confirm that &lt;code&gt;gnatsd&lt;/code&gt; is running:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;printf&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;PING\r\n&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; nc localhost 4222
+&lt;span class="c"&gt;# Output:&lt;/span&gt;
+INFO &lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;server_id&amp;quot;&lt;/span&gt;:&lt;span class="s2"&gt;&amp;quot;68348d45b8246e8c1a1fb6c37a940d61&amp;quot;&lt;/span&gt;,&lt;span class="s2"&gt;&amp;quot;version&amp;quot;&lt;/span&gt;:&lt;span class="s2"&gt;&amp;quot;0.7.2&amp;quot;&lt;/span&gt;,&lt;span class="s2"&gt;&amp;quot;go&amp;quot;&lt;/span&gt;:&lt;span class="s2"&gt;&amp;quot;go1.5.2&amp;quot;&lt;/span&gt;,&lt;span class="s2"&gt;&amp;quot;host&amp;quot;&lt;/span&gt;:&lt;span class="s2"&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/span&gt;,&lt;span class="s2"&gt;&amp;quot;port&amp;quot;&lt;/span&gt;:4222,&lt;span class="s2"&gt;&amp;quot;auth_required&amp;quot;&lt;/span&gt;:false,&lt;span class="s2"&gt;&amp;quot;ssl_required&amp;quot;&lt;/span&gt;:false,&lt;span class="s2"&gt;&amp;quot;tls_required&amp;quot;&lt;/span&gt;:false,&lt;span class="s2"&gt;&amp;quot;tls_verify&amp;quot;&lt;/span&gt;:false,&lt;span class="s2"&gt;&amp;quot;max_payload&amp;quot;&lt;/span&gt;:1048576&lt;span class="o"&gt;}&lt;/span&gt;
+PONG
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Retrieve info about the service:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;systemctl status gnatsd.service
+&lt;span class="c"&gt;# Output:&lt;/span&gt;
+● gnatsd.service - NATS server
+   Loaded: loaded &lt;span class="o"&gt;(&lt;/span&gt;/etc/systemd/system/gnatsd.service&lt;span class="p"&gt;;&lt;/span&gt; disabled&lt;span class="p"&gt;;&lt;/span&gt; vendor preset: enabled&lt;span class="o"&gt;)&lt;/span&gt;
+   Active: active &lt;span class="o"&gt;(&lt;/span&gt;running&lt;span class="o"&gt;)&lt;/span&gt; since Fri 2016-04-08 21:02:23 EDT&lt;span class="p"&gt;;&lt;/span&gt; 2min 47s ago
+ Main PID: &lt;span class="m"&gt;1726&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;gnatsd&lt;span class="o"&gt;)&lt;/span&gt;
+   CGroup: /system.slice/gnatsd.service
+           └─1726 /opt/bin/gnatsd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Stop it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl stop gnatsd.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Disable it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl disable gnatsd.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Enable it again:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;gnatsd.service
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="nats"></category><category term="systemd"></category></entry><entry><title>How To Install the NATS Server on Ubuntu 15.10</title><link href="http://yuce.me/how-to-install-the-nats-server-on-ubuntu-1510.html" rel="alternate"></link><updated>2016-04-08T00:00:00+03:00</updated><author><name>Yuce Tekol</name></author><id>tag:yuce.me,2016-04-08:how-to-install-the-nats-server-on-ubuntu-1510.html</id><summary type="html">&lt;h1&gt;How To Install the NATS Server on Ubuntu 15.10&lt;/h1&gt;
+&lt;h3&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://nats.io/"&gt;NATS&lt;/a&gt; is a high performance messaging platform, often described as
+"nervous system of the internet".&lt;/p&gt;
+&lt;h3&gt;Goals&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Retrieve and install NATS 0.7.2.&lt;/li&gt;
+&lt;li&gt;Install a Let's Encrypt certificate to secure communication.&lt;/li&gt;
+&lt;li&gt;Cluster several NATS servers to increase reliability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Prerequisites&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;1 x small Ubuntu 15.10 droplet&lt;/li&gt;
+&lt;li&gt;(&lt;em&gt;optionally&lt;/em&gt;) + 2x small Ubuntu 15.10 droplet (&lt;em&gt;for clustering&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Complete steps 1-3 of
+&lt;a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04"&gt;Initial Server Setup with Ubuntu 14.04&lt;/a&gt;
+to create the &amp;lt;^&amp;gt;demo&amp;lt;^&amp;gt; user&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Obtaining and Installing the NATS Server&lt;/h2&gt;
+&lt;p&gt;If you have correctly completed steps 1 to 3 of &lt;a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04"&gt;Initial Server Setup with Ubuntu 14.04&lt;/a&gt;
+tutorial, you should have the &amp;lt;^&amp;gt;demo&amp;lt;^&amp;gt; user on your system.&lt;/p&gt;
+&lt;p&gt;Let's switch to the &amp;lt;^&amp;gt;demo&amp;lt;^&amp;gt; user, and change the directory to its home:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;su - demo
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We can now download gnats 0.7.2. You can also check &lt;a href="http://nats.io/download"&gt;nats.io/download&lt;/a&gt; for a later version:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;wget https://github.com/nats-io/gnatsd/releases/download/v0.7.2/gnatsd-v0.7.2-linux-amd64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Extract the server executable:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;tar xf gnatsd-v0.7.2-linux-amd64.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On Linux, nonstandard software is usually kept at &lt;code&gt;/opt&lt;/code&gt; directory; &lt;code&gt;/opt/bin&lt;/code&gt; is a good place to
+keep the &lt;code&gt;gnatsd&lt;/code&gt; executable. Let's first create the directory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo mkdir -p /opt/bin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And then, move &lt;code&gt;gnatsd&lt;/code&gt; to its place:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;sudo mv gnatsd /opt/bin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Optionally, we can remove the files we don't need:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;rm gnatsd-v0.7.2-linux-amd64.tar.gz LICENSE README.md
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let's test that we can run &lt;code&gt;gnatsd&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;/opt/bin/gnatsd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The output should be similar to this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;[1289] 2016/04/08 16:48:45.353086 [INF] Starting gnatsd version 0.7.2
+[1289] 2016/04/08 16:48:45.353812 [INF] Listening for client connections on 0.0.0.0:4222
+[1289] 2016/04/08 16:48:45.354497 [INF] gnatsd is ready
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By default, &lt;code&gt;gnatsd&lt;/code&gt; will listen on port &lt;code&gt;4222&lt;/code&gt; and on all interfaces.&lt;/p&gt;
+&lt;p&gt;Press &lt;code&gt;Ctrl+C&lt;/code&gt; to shutdown &lt;code&gt;gnatsd&lt;/code&gt; to continue.&lt;/p&gt;
+&lt;h2&gt;Adding a Systemd Entry&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.freedesktop.org/wiki/Software/systemd/"&gt;Systemd&lt;/a&gt; is a service manager
+for Linux systems. It is responsible for starting services on boot, restarting them
+as necessary and stopping in a controlled fashion on system shutdown. &lt;code&gt;Systemd&lt;/code&gt; was
+created by Red Hat, and should be available on most RHEL and CentOS systems out there.
+It is available on Ubuntu 15.04+.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;printf &amp;quot;[Unit]\nDescription=NATS server\n\n[Service]\nExecStart=/opt/bin/gnatsd\nRestart=on-abort\n\n[Install]\nWantedBy=multi-user.target\n&amp;quot; &amp;gt; gnatsd.service
+sudo mv gnatsd.service /etc/systemd/system
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="nats"></category><category term="letsencrypt"></category><category term="ssl"></category><category term="tls"></category></entry><entry><title>ReportLab on OSX</title><link href="http://yuce.me/reportlab-on-osx.html" rel="alternate"></link><updated>2012-11-03T00:00:00+02:00</updated><author><name>Yuce Tekol</name></author><id>tag:yuce.me,2012-11-03:reportlab-on-osx.html</id><summary type="html">&lt;p&gt;It's easy to compile &lt;a href="http://www.reportlab.com/"&gt;ReportLab&lt;/a&gt; on OSX (&lt;em&gt;in my case, 10.8&lt;/em&gt;). The only problem is, you'll get the following warning:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;# installing without freetype no ttf, sorry!
 # You need to install a static library version of the freetype2 software
 &lt;/pre&gt;&lt;/div&gt;

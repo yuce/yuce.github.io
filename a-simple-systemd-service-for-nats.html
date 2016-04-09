@@ -123,34 +123,69 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">99 Bottles of Beer in Marvin3</h1>
-	<span class="post-date">2005-09-29</span>
+	<h1 class="post-title">A Simple Systemd Service for NATS</h1>
+	<span class="post-date">2016-04-09</span>
     <div class="article-tag-box">
-            <div class="tag">marvin3</div>
-            <div class="tag">marvin</div>
-            <div class="tag">99 bottles</div>
+            <div class="tag">nats</div>
+            <div class="tag">systemd</div>
     </div>
 
-	<p>How to write 99 bottles of beer in Marvin3?</p>
-<div class="highlight"><pre>:bottles dup dup 1 &gt; [&quot; bottles&quot;] [&quot; bottle&quot;] ifte cat ;
+	<p>Here's a simple <a href="http://nats.io">NATS</a> <code>gnatsd</code> service for
+<a href="https://www.freedesktop.org/wiki/Software/systemd/">Systemd</a>,
+which starts <code>gnatsd</code> on boot and restarts it in case it
+crashes (<em>which is highly unlikely</em>). I assume you've already
+downloaded the <code>gnatsd</code> executable and placed it in <code>/opt/bin/gnatsd</code>.</p>
+<p>Save the configuraton below as  <code>/etc/systemd/system/gnatsd.service</code>:</p>
+<div class="highlight"><pre><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">NATS server</span>
 
-:sing
-    bottles dup &quot; of beer on the wall,&quot; cat println
-    &quot; of beer. &quot; cat println
-    &quot;Take one down, pass it around.&quot; println ;
+<span class="k">[Service]</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/bin/gnatsd</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">on-abort</span>
 
-:theend  &quot;No more beer left.&quot; println ;
-
-:beers  [dup 0 &gt;] [sing decr] while theend eat ;
-
-# start singing
-99 beers
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
 </pre></div>
 
 
-<p>Also you may check <a href="/99-bottles-of-beer-on-the-wall.html">a previous post</a> for <em>the original</em> Marvin.
-Other languages? <a href="http://www.westnet.com/mirrors/99bottles/beer.html">99 Bottles of Beer on the Wall</a> lists many.
-See <a href="http://en.wikipedia.org/wiki/99_Bottles_of_Beer">99 Bottles of Beer on Wikipedia</a>.</p>
+<p>You can now start the service using:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl start gnatsd.service
+</pre></div>
+
+
+<p>Confirm that <code>gnatsd</code> is running:</p>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">printf</span> <span class="s2">&quot;PING\r\n&quot;</span> <span class="p">|</span> nc localhost 4222
+<span class="c"># Output:</span>
+INFO <span class="o">{</span><span class="s2">&quot;server_id&quot;</span>:<span class="s2">&quot;68348d45b8246e8c1a1fb6c37a940d61&quot;</span>,<span class="s2">&quot;version&quot;</span>:<span class="s2">&quot;0.7.2&quot;</span>,<span class="s2">&quot;go&quot;</span>:<span class="s2">&quot;go1.5.2&quot;</span>,<span class="s2">&quot;host&quot;</span>:<span class="s2">&quot;0.0.0.0&quot;</span>,<span class="s2">&quot;port&quot;</span>:4222,<span class="s2">&quot;auth_required&quot;</span>:false,<span class="s2">&quot;ssl_required&quot;</span>:false,<span class="s2">&quot;tls_required&quot;</span>:false,<span class="s2">&quot;tls_verify&quot;</span>:false,<span class="s2">&quot;max_payload&quot;</span>:1048576<span class="o">}</span>
+PONG
+</pre></div>
+
+
+<p>Retrieve info about the service:</p>
+<div class="highlight"><pre><span class="nv">$ </span>systemctl status gnatsd.service
+<span class="c"># Output:</span>
+● gnatsd.service - NATS server
+   Loaded: loaded <span class="o">(</span>/etc/systemd/system/gnatsd.service<span class="p">;</span> disabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+   Active: active <span class="o">(</span>running<span class="o">)</span> since Fri 2016-04-08 21:02:23 EDT<span class="p">;</span> 2min 47s ago
+ Main PID: <span class="m">1726</span> <span class="o">(</span>gnatsd<span class="o">)</span>
+   CGroup: /system.slice/gnatsd.service
+           └─1726 /opt/bin/gnatsd
+</pre></div>
+
+
+<p>Stop it:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl stop gnatsd.service
+</pre></div>
+
+
+<p>Disable it:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl disable gnatsd.service
+</pre></div>
+
+
+<p>Enable it again:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>gnatsd.service
+</pre></div>
 </div>
             <footer>
                 <p class="footer">&copy; 2003-2016 Yüce Tekol</p>

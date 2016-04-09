@@ -66,6 +66,7 @@
             infix&nbsp;
             Istanbul&nbsp;
             KDE&nbsp;
+            letsencrypt&nbsp;
             link checker&nbsp;
             linux&nbsp;
             mac&nbsp;
@@ -74,6 +75,7 @@
             marvin3&nbsp;
             me&nbsp;
             movie&nbsp;
+            nats&nbsp;
             nearest neighbor&nbsp;
             open solaris&nbsp;
             osx&nbsp;
@@ -90,9 +92,12 @@
             reportlab&nbsp;
             send more money&nbsp;
             sendmory&nbsp;
+            ssl&nbsp;
             strings&nbsp;
+            systemd&nbsp;
             tip&nbsp;
             tips&nbsp;
+            tls&nbsp;
             tricks&nbsp;
             ubuntu&nbsp;
         </p>
@@ -118,6 +123,28 @@
 	</div>
 </div>		<div class="content container">
 	<div class="posts">
+                <div class="post">
+                    <h1 class="post-title" href="http://yuce.me/a-simple-systemd-service-for-nats.html#a-simple-systemd-service-for-nats">
+                        <a href="http://yuce.me/a-simple-systemd-service-for-nats.html#a-simple-systemd-service-for-nats">A Simple Systemd Service for NATS</a>
+                    </h1>
+                    <span class="post-date">2016-04-09</span>
+                    <p>
+                        <p>Here's a simple <a href="http://nats.io">NATS</a> <code>gnatsd</code> service for
+<a href="https://www.freedesktop.org/wiki/Software/systemd/">Systemd</a>,
+which starts <code>gnatsd</code> on boot and restarts it in case it
+crashes (<em>which is highly unlikely</em>). I assume you've already
+downloaded the <code>gnatsd</code> executable and placed it in <code>/opt/bin/gnatsd</code>.</p>
+<p>Save the configuraton below as  <code>/etc/systemd/system/gnatsd.service</code>:</p>
+<div class="highlight"><pre><span class="k">[Unit …</span></pre></div>
+                    </p>
+                    <div class="read-more">
+                        <a class="read-more" href="a-simple-systemd-service-for-nats.html">&laquo; READ MORE &raquo;</a>
+                    </div>
+                    <div class="index-tag-box">
+                            <div class="tag">nats</div>
+                            <div class="tag">systemd</div>
+                    </div>
+                </div>
                 <div class="post">
                     <h1 class="post-title" href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">
                         <a href="http://yuce.me/reportlab-on-osx.html#reportlab-on-osx">ReportLab on OSX</a>
@@ -283,59 +310,6 @@ Here's the command line:</p>
                             <div class="tag">pdf</div>
                             <div class="tag">ghostscript</div>
                             <div class="tag">tips</div>
-                    </div>
-                </div>
-                <div class="post">
-                    <h1 class="post-title" href="http://yuce.me/pyswip-facts-and-rules.html#pyswip-facts-and-rules">
-                        <a href="http://yuce.me/pyswip-facts-and-rules.html#pyswip-facts-and-rules">PySWIP: Facts and Rules</a>
-                    </h1>
-                    <span class="post-date">2009-10-08</span>
-                    <p>
-                        <p><a href="http://code.google.com/p/pyswip/">PySWIP</a> is a Python module which enables accessing <a href="http://www.swi-prolog.org/">SWI-Prolog</a>'s foreign language interface using our beloved computer language.
-Here's a small tutorial on adding facts and rules to prolog knowledgebase.</p>
-<p>First, adding facts and rules, based on examples in a <a href="http://www.doc.gold.ac.uk/~mas02gw/prolog_tutorial/prologpages/rules.html">Prolog tutorial</a>.</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyswip</span> <span class="kn">import</span> <span class="n">Prolog</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">Prolog</span><span class="p">()</span>
-
-<span class="c"># something is …</span></pre></div>
-                    </p>
-                    <div class="read-more">
-                        <a class="read-more" href="pyswip-facts-and-rules.html">&laquo; READ MORE &raquo;</a>
-                    </div>
-                    <div class="index-tag-box">
-                            <div class="tag">python</div>
-                            <div class="tag">prolog</div>
-                            <div class="tag">pyswip</div>
-                    </div>
-                </div>
-                <div class="post">
-                    <h1 class="post-title" href="http://yuce.me/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">
-                        <a href="http://yuce.me/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">Getting the Currently Playing Song Info on Amarok via DCOP</a>
-                    </h1>
-                    <span class="post-date">2009-08-13</span>
-                    <p>
-                        <p>Here's a sample application for using DCOP with Python.
-Needed to install <a href="http://packages.debian.org/search?keywords=python-dcop">python-dcop</a> on Debian.
-It works on KDE 3.5 with Amarok 1.4 (<em>won't work on KDE 4</em>)</p>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pydcop</span>
-
-<span class="n">playerService</span> <span class="o">=</span> <span class="n">pydcop</span><span class="o">.</span><span class="n">DCOPObject</span><span class="p">(</span><span class="s">&#39;amarok&#39;</span><span class="p">,</span> <span class="s">&#39;player&#39;</span><span class="p">)</span>
-
-<span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-   <span class="n">title</span><span class="o">=</span><span class="n">playerService</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
-   <span class="n">artist</span><span class="o">=</span><span class="n">playerService</span><span class="o">.</span><span class="n">artist</span><span class="p">(),</span>
-   <span class="n">album</span><span class="o">=</span><span class="n">playerService</span><span class="o">.</span><span class="n">album</span><span class="p">()</span>
-<span class="p">)</span>
-<span class="k">print</span> <span class="s">&#39;</span><span class="si">%(artist …</span></pre></div>
-                    </p>
-                    <div class="read-more">
-                        <a class="read-more" href="getting-the-currently-playing-song-info-on-amarok-via-dcop.html">&laquo; READ MORE &raquo;</a>
-                    </div>
-                    <div class="index-tag-box">
-                            <div class="tag">python</div>
-                            <div class="tag">DCOP</div>
-                            <div class="tag">amarok</div>
-                            <div class="tag">KDE</div>
                     </div>
                 </div>
 	</div>

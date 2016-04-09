@@ -123,34 +123,90 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">99 Bottles of Beer in Marvin3</h1>
-	<span class="post-date">2005-09-29</span>
+	<h1 class="post-title">How To Install the NATS Server on Ubuntu 15.10</h1>
+	<span class="post-date">2016-04-08</span>
     <div class="article-tag-box">
-            <div class="tag">marvin3</div>
-            <div class="tag">marvin</div>
-            <div class="tag">99 bottles</div>
+            <div class="tag">nats</div>
+            <div class="tag">letsencrypt</div>
+            <div class="tag">ssl</div>
+            <div class="tag">tls</div>
     </div>
 
-	<p>How to write 99 bottles of beer in Marvin3?</p>
-<div class="highlight"><pre>:bottles dup dup 1 &gt; [&quot; bottles&quot;] [&quot; bottle&quot;] ifte cat ;
-
-:sing
-    bottles dup &quot; of beer on the wall,&quot; cat println
-    &quot; of beer. &quot; cat println
-    &quot;Take one down, pass it around.&quot; println ;
-
-:theend  &quot;No more beer left.&quot; println ;
-
-:beers  [dup 0 &gt;] [sing decr] while theend eat ;
-
-# start singing
-99 beers
+	<h1>How To Install the NATS Server on Ubuntu 15.10</h1>
+<h3>Introduction</h3>
+<p><a href="http://nats.io/">NATS</a> is a high performance messaging platform, often described as
+"nervous system of the internet".</p>
+<h3>Goals</h3>
+<ul>
+<li>Retrieve and install NATS 0.7.2.</li>
+<li>Install a Let's Encrypt certificate to secure communication.</li>
+<li>Cluster several NATS servers to increase reliability.</li>
+</ul>
+<h3>Prerequisites</h3>
+<ul>
+<li>1 x small Ubuntu 15.10 droplet</li>
+<li>(<em>optionally</em>) + 2x small Ubuntu 15.10 droplet (<em>for clustering</em>)</li>
+<li>Complete steps 1-3 of
+<a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04">Initial Server Setup with Ubuntu 14.04</a>
+to create the &lt;^&gt;demo&lt;^&gt; user</li>
+</ul>
+<h2>Obtaining and Installing the NATS Server</h2>
+<p>If you have correctly completed steps 1 to 3 of <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04">Initial Server Setup with Ubuntu 14.04</a>
+tutorial, you should have the &lt;^&gt;demo&lt;^&gt; user on your system.</p>
+<p>Let's switch to the &lt;^&gt;demo&lt;^&gt; user, and change the directory to its home:</p>
+<div class="highlight"><pre>su - demo
 </pre></div>
 
 
-<p>Also you may check <a href="/99-bottles-of-beer-on-the-wall.html">a previous post</a> for <em>the original</em> Marvin.
-Other languages? <a href="http://www.westnet.com/mirrors/99bottles/beer.html">99 Bottles of Beer on the Wall</a> lists many.
-See <a href="http://en.wikipedia.org/wiki/99_Bottles_of_Beer">99 Bottles of Beer on Wikipedia</a>.</p>
+<p>We can now download gnats 0.7.2. You can also check <a href="http://nats.io/download">nats.io/download</a> for a later version:</p>
+<div class="highlight"><pre>wget https://github.com/nats-io/gnatsd/releases/download/v0.7.2/gnatsd-v0.7.2-linux-amd64.tar.gz
+</pre></div>
+
+
+<p>Extract the server executable:</p>
+<div class="highlight"><pre>tar xf gnatsd-v0.7.2-linux-amd64.tar.gz
+</pre></div>
+
+
+<p>On Linux, nonstandard software is usually kept at <code>/opt</code> directory; <code>/opt/bin</code> is a good place to
+keep the <code>gnatsd</code> executable. Let's first create the directory:</p>
+<div class="highlight"><pre>sudo mkdir -p /opt/bin
+</pre></div>
+
+
+<p>And then, move <code>gnatsd</code> to its place:</p>
+<div class="highlight"><pre>sudo mv gnatsd /opt/bin
+</pre></div>
+
+
+<p>Optionally, we can remove the files we don't need:</p>
+<div class="highlight"><pre>rm gnatsd-v0.7.2-linux-amd64.tar.gz LICENSE README.md
+</pre></div>
+
+
+<p>Let's test that we can run <code>gnatsd</code>:</p>
+<div class="highlight"><pre>/opt/bin/gnatsd
+</pre></div>
+
+
+<p>The output should be similar to this:</p>
+<div class="highlight"><pre>[1289] 2016/04/08 16:48:45.353086 [INF] Starting gnatsd version 0.7.2
+[1289] 2016/04/08 16:48:45.353812 [INF] Listening for client connections on 0.0.0.0:4222
+[1289] 2016/04/08 16:48:45.354497 [INF] gnatsd is ready
+</pre></div>
+
+
+<p>By default, <code>gnatsd</code> will listen on port <code>4222</code> and on all interfaces.</p>
+<p>Press <code>Ctrl+C</code> to shutdown <code>gnatsd</code> to continue.</p>
+<h2>Adding a Systemd Entry</h2>
+<p><a href="https://www.freedesktop.org/wiki/Software/systemd/">Systemd</a> is a service manager
+for Linux systems. It is responsible for starting services on boot, restarting them
+as necessary and stopping in a controlled fashion on system shutdown. <code>Systemd</code> was
+created by Red Hat, and should be available on most RHEL and CentOS systems out there.
+It is available on Ubuntu 15.04+.</p>
+<div class="highlight"><pre>printf &quot;[Unit]\nDescription=NATS server\n\n[Service]\nExecStart=/opt/bin/gnatsd\nRestart=on-abort\n\n[Install]\nWantedBy=multi-user.target\n&quot; &gt; gnatsd.service
+sudo mv gnatsd.service /etc/systemd/system
+</pre></div>
 </div>
             <footer>
                 <p class="footer">&copy; 2003-2016 Yüce Tekol</p>
