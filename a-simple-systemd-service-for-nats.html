@@ -173,18 +173,29 @@ PONG
 </pre></div>
 
 
-<p>Stop it:</p>
+<p>In order to make the service start on boot, we need to enable it:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>gnatsd.service
+</pre></div>
+
+
+<p>You can restart the service (e.g., when the <code>gnatsd</code> configuration changes):</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl restart gnatsd.service
+</pre></div>
+
+
+<p><code>gnatsd</code> will support reloading the configuration without restarting soon, so the
+following will be available:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl reload gnatsd.service
+</pre></div>
+
+
+<p>You can stop the service:</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo systemctl stop gnatsd.service
 </pre></div>
 
 
-<p>Disable it:</p>
+<p>Or disable it, so it won't start on boot:</p>
 <div class="highlight"><pre><span class="nv">$ </span>sudo systemctl disable gnatsd.service
-</pre></div>
-
-
-<p>Enable it again:</p>
-<div class="highlight"><pre><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>gnatsd.service
 </pre></div>
 </div>
             <footer>

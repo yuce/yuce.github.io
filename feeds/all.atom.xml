@@ -42,18 +42,29 @@ PONG
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Stop it:&lt;/p&gt;
+&lt;p&gt;In order to make the service start on boot, we need to enable it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;gnatsd.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can restart the service (e.g., when the &lt;code&gt;gnatsd&lt;/code&gt; configuration changes):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl restart gnatsd.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;gnatsd&lt;/code&gt; will support reloading the configuration without restarting soon, so the
+following will be available:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl reload gnatsd.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can stop the service:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl stop gnatsd.service
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Disable it:&lt;/p&gt;
+&lt;p&gt;Or disable it, so it won't start on boot:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl disable gnatsd.service
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Enable it again:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;sudo systemctl &lt;span class="nb"&gt;enable &lt;/span&gt;gnatsd.service
 &lt;/pre&gt;&lt;/div&gt;</summary><category term="nats"></category><category term="systemd"></category></entry><entry><title>How To Install the NATS Server on Ubuntu 15.10</title><link href="http://yuce.me/how-to-install-the-nats-server-on-ubuntu-1510.html" rel="alternate"></link><updated>2016-04-08T00:00:00+03:00</updated><author><name>Yuce Tekol</name></author><id>tag:yuce.me,2016-04-08:how-to-install-the-nats-server-on-ubuntu-1510.html</id><summary type="html">&lt;h1&gt;How To Install the NATS Server on Ubuntu 15.10&lt;/h1&gt;
 &lt;h3&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://nats.io/"&gt;NATS&lt;/a&gt; is a high performance messaging platform, often described as
