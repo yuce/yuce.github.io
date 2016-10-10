@@ -36,10 +36,12 @@
 <div class="sidebar">
     <div class="container sidebar-sticky">
         <p class="tag-cloud">
+            &nbsp;
             99 bottles&nbsp;
             accumulator generator&nbsp;
             AI&nbsp;
             amarok&nbsp;
+            catnats&nbsp;
             CEC2003&nbsp;
             combination&nbsp;
             computational intelligence&nbsp;
@@ -49,6 +51,7 @@
             ctypes&nbsp;
             currying&nbsp;
             DCOP&nbsp;
+            Digital Ocean&nbsp;
             erlang&nbsp;
             failure&nbsp;
             file upload&nbsp;
@@ -86,6 +89,7 @@
             prisoner's dilemma&nbsp;
             prolog&nbsp;
             prometheus&nbsp;
+            protocol&nbsp;
             pyswip&nbsp;
             python&nbsp;
             reportlab&nbsp;
@@ -93,9 +97,11 @@
             sendmory&nbsp;
             strings&nbsp;
             systemd&nbsp;
+            telnet&nbsp;
             tip&nbsp;
             tips&nbsp;
             tricks&nbsp;
+            Tutorial&nbsp;
             ubuntu&nbsp;
         </p>
 
@@ -121,6 +127,49 @@
 </div>		<div class="content container">
 	<div class="posts">
                 <div class="post">
+                    <h1 class="post-title" href="http://yuce.me/merging-pdf-files-using-ghostscript.html#merging-pdf-files-using-ghostscript">
+                        <a href="http://yuce.me/merging-pdf-files-using-ghostscript.html#merging-pdf-files-using-ghostscript">Merging PDF Files Using Ghostscript</a>
+                    </h1>
+                    <span class="post-date">2009-10-14</span>
+                    <p>
+                        <p>If you have to merge PDF files, you need no other than Ghostscript (which is installed by default with many Linux distributions).
+Here's the command line:</p>
+<div class="highlight"><pre>gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=firstANDsecond.pdf -dBATCH first.pdf second.pdf
+</pre></div>
+                    </p>
+                    <div class="read-more">
+                        <a class="read-more" href="merging-pdf-files-using-ghostscript.html">&laquo; READ MORE &raquo;</a>
+                    </div>
+                    <div class="index-tag-box">
+                            <div class="tag">pdf</div>
+                            <div class="tag">ghostscript</div>
+                            <div class="tag">tips</div>
+                    </div>
+                </div>
+                <div class="post">
+                    <h1 class="post-title" href="http://yuce.me/pyswip-facts-and-rules.html#pyswip-facts-and-rules">
+                        <a href="http://yuce.me/pyswip-facts-and-rules.html#pyswip-facts-and-rules">PySWIP: Facts and Rules</a>
+                    </h1>
+                    <span class="post-date">2009-10-08</span>
+                    <p>
+                        <p><a href="http://code.google.com/p/pyswip/">PySWIP</a> is a Python module which enables accessing <a href="http://www.swi-prolog.org/">SWI-Prolog</a>'s foreign language interface using our beloved computer language.
+Here's a small tutorial on adding facts and rules to prolog knowledgebase.</p>
+<p>First, adding facts and rules, based on examples in a <a href="http://www.doc.gold.ac.uk/~mas02gw/prolog_tutorial/prologpages/rules.html">Prolog tutorial</a>.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyswip</span> <span class="kn">import</span> <span class="n">Prolog</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Prolog</span><span class="p">()</span>
+
+<span class="c"># something ...</span></pre></div>
+                    </p>
+                    <div class="read-more">
+                        <a class="read-more" href="pyswip-facts-and-rules.html">&laquo; READ MORE &raquo;</a>
+                    </div>
+                    <div class="index-tag-box">
+                            <div class="tag">python</div>
+                            <div class="tag">prolog</div>
+                            <div class="tag">pyswip</div>
+                    </div>
+                </div>
+                <div class="post">
                     <h1 class="post-title" href="http://yuce.me/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">
                         <a href="http://yuce.me/getting-the-currently-playing-song-info-on-amarok-via-dcop.html#getting-the-currently-playing-song-info-on-amarok-via-dcop">Getting the Currently Playing Song Info on Amarok via DCOP</a>
                     </h1>
@@ -136,9 +185,7 @@ It works on KDE 3.5 with Amarok 1.4 (<em>won't work on KDE 4</em>)</p>
 <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
    <span class="n">title</span><span class="o">=</span><span class="n">playerService</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
    <span class="n">artist</span><span class="o">=</span><span class="n">playerService</span><span class="o">.</span><span class="n">artist</span><span class="p">(),</span>
-   <span class="n">album</span><span class="o">=</span><span class="n">playerService</span><span class="o">.</span><span class="n">album</span><span class="p">()</span>
-<span class="p">)</span>
-<span class="k">print</span> <span class="s">&#39;</span><span class="si">%(artist …</span></pre></div>
+   <span class="n">album</span><span class="o">=</span><span class="n">playerService</span><span class="o">.</span><span class="n">album ...</span></pre></div>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="getting-the-currently-playing-song-info-on-amarok-via-dcop.html">&laquo; READ MORE &raquo;</a>
@@ -157,8 +204,7 @@ It works on KDE 3.5 with Amarok 1.4 (<em>won't work on KDE 4</em>)</p>
                     <span class="post-date">2007-05-28</span>
                     <p>
                         <p>I've written bulk of <a href="http://code.google.com/p/pyswip/">PySWIP</a> last summer, it is based on Nathan Denny's <code>proolog.py</code>.
-This is the first project that I used <a href="http://starship.python.net/crew/theller/ctypes/">ctypes</a>, a fantastic package which allows calling C functions from dynamic libraries that I use to link <code>libpl.so</code> (<em>Linux</em>) or <code>libpl.dll</code> (<em>Windows</em>) of <a href="http://www.swi-prolog.org/">SWI-Prolog</a>.
-One …</p>
+This is the first project that I used <a href="http://starship.python.net/crew/theller/ctypes/">ctypes</a>, a fantastic package which allows calling C functions from dynamic libraries that I use to link <code>libpl.so</code> (<em>Linux</em>) or <code>libpl.dll</code> (<em>Windows</em>) of ...</p>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="ctypes-strings.html">&laquo; READ MORE &raquo;</a>
@@ -178,7 +224,7 @@ One …</p>
                     <p>
                         <p>Finding valid and distinct integers for digits S, E, N, D, M, O, R and Y in the equation SEND + MORE = MONEY is a classical constraint programming problem.
 Here's the slightly modified version of the sample program at <a href="http://en.wikipedia.org/wiki/Constraint_programming">Wikipedia constraint programming entry</a> for <a href="http://www.swi-prolog.org/">SWI-Prolog</a> using clp library:</p>
-<div class="highlight"><pre><span class="p">:-</span> <span class="nf">use_module</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="s-Atom">&#39;clp …</span></pre></div>
+<div class="highlight"><pre><span class="p">:-</span> <span class="nf">use_module</span><span class="p">(</span><span class="nf">library ...</span></pre></div>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="send-more-money.html">&laquo; READ MORE &raquo;</a>
@@ -202,7 +248,7 @@ Here's the slightly modified version of the sample program at <a href="http://en
    <span class="n">candy</span> <span class="o">=</span> <span class="p">[</span><span class="bp">True</span><span class="p">]</span><span class="o">*</span><span class="n">size</span>
    <span class="n">candy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
 
-   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1 …</span></pre></div>
+   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range ...</span></pre></div>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="shameful-past.html">&laquo; READ MORE &raquo;</a>
@@ -220,7 +266,7 @@ Here's the slightly modified version of the sample program at <a href="http://en
                     <p>
                         <p>Today, I added a keyword called <em>freeze</em> to Marvin3.
 Basically, when called inside a routine, it pops the top element from the stack and replaces routine's code with a word that pushes that value onto the stack.
-This way we can create a <em>write-once</em> routine, which is similar to C …</p>
+This way we can create a <em>write-once</em> routine, which is similar to ...</p>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="freeeze-for-marvin3.html">&laquo; READ MORE &raquo;</a>
@@ -245,7 +291,7 @@ This way we can create a <em>write-once</em> routine, which is similar to C …<
 
 :theend  &quot;No more beer left.&quot; println ;
 
-:beers  [dup 0 &gt;] [sing decr] while …</pre></div>
+:beers  [dup 0 &gt;] [sing decr] while ...</pre></div>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="99-bottles-of-beer-in-marvin3.html">&laquo; READ MORE &raquo;</a>
@@ -268,7 +314,7 @@ Marvin3 features object-oriented-programming, anonymous routines, eager lists, v
 </blockquote>
 <p>This is from my <a href="http://sourceforge.net/projects/marvin3/">Marvin3 project home</a>.
 Marvin has evolved into Marvin3 and is becoming ready to be tried by the audience.
-In order to …</p>
+In order to ...</p>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="marvin3-is-launched.html">&laquo; READ MORE &raquo;</a>
@@ -286,7 +332,7 @@ In order to …</p>
                     <p>
                         <p>Last week, I received 20 (1 install + 1 live) Ubuntu Linux 5.04 (Hoary Hedgehog) CDs <em>FOR FREE</em> (details will follow).
 Of course in no time I installed it. I have to say that Hoary rocks!
-I was using Warthy before, and this new release fixes the few problems Warthy …</p>
+I was using Warthy before, and this new release fixes the few problems Warthy ...</p>
                     </p>
                     <div class="read-more">
                         <a class="read-more" href="ubuntu-is-great.html">&laquo; READ MORE &raquo;</a>
@@ -296,46 +342,6 @@ I was using Warthy before, and this new release fixes the few problems Warthy �
                             <div class="tag">hoary hedgehog</div>
                             <div class="tag">linux</div>
                             <div class="tag">FOSS</div>
-                    </div>
-                </div>
-                <div class="post">
-                    <h1 class="post-title" href="http://yuce.me/the-gods-made-heavy-metal-in-istanbul.html#the-gods-made-heavy-metal-in-istanbul">
-                        <a href="http://yuce.me/the-gods-made-heavy-metal-in-istanbul.html#the-gods-made-heavy-metal-in-istanbul">The Gods Made Heavy Metal in Istanbul</a>
-                    </h1>
-                    <span class="post-date">2005-09-13</span>
-                    <p>
-                        <p>The eminent heavy metal band <a href="http://www.manowar.com/">Manowar</a> was in Istanbul, Turkey on August 6th 2005.
-The concert was at Yedikule (7 Towers) Dungeons, the perfect place for it.
-It was also raining and thundering when the band was playing <em>Hail and Kill</em>.
-The show was in one word, <strong>PERFECT!</strong>, we kept …</p>
-                    </p>
-                    <div class="read-more">
-                        <a class="read-more" href="the-gods-made-heavy-metal-in-istanbul.html">&laquo; READ MORE &raquo;</a>
-                    </div>
-                    <div class="index-tag-box">
-                            <div class="tag">Manowar</div>
-                            <div class="tag">heavy metal</div>
-                            <div class="tag">Istanbul</div>
-                            <div class="tag">concert</div>
-                    </div>
-                </div>
-                <div class="post">
-                    <h1 class="post-title" href="http://yuce.me/generating-all-strings-of-a-given-alphabet.html#generating-all-strings-of-a-given-alphabet">
-                        <a href="http://yuce.me/generating-all-strings-of-a-given-alphabet.html#generating-all-strings-of-a-given-alphabet">Generating All Strings of a Given Alphabet</a>
-                    </h1>
-                    <span class="post-date">2005-06-10</span>
-                    <p>
-                        <p>For a recent research project, I had to write a function that generates all the strings of a given alphabet.
-It was (as always) very easy to figure it out in Python, only 5 minutes; below is the code (with modifications, I've polished the idea a bit):</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">allstrings</span><span class="p">(</span><span class="n">alphabet …</span></pre></div>
-                    </p>
-                    <div class="read-more">
-                        <a class="read-more" href="generating-all-strings-of-a-given-alphabet.html">&laquo; READ MORE &raquo;</a>
-                    </div>
-                    <div class="index-tag-box">
-                            <div class="tag">python</div>
-                            <div class="tag">strings</div>
-                            <div class="tag">combination</div>
                     </div>
                 </div>
 	</div>

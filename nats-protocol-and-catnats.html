@@ -126,21 +126,29 @@
 	</div>
 </div>		<div class="content container">
 <div class="post">
-	<h1 class="post-title">Ants at CEC2003</h1>
-	<span class="post-date">2003-06-10</span>
+	<h1 class="post-title">NATS Protocol and Catnats</h1>
+	<span class="post-date">2016-04-17</span>
     <div class="article-tag-box">
-            <div class="tag">CEC2003</div>
-            <div class="tag">congress</div>
-            <div class="tag">AI</div>
-            <div class="tag">computational intelligence</div>
-            <div class="tag">me</div>
+            <div class="tag">NATS</div>
+            <div class="tag">protocol</div>
+            <div class="tag">catnats</div>
+            <div class="tag">telnet</div>
     </div>
 
-	<p><a href="http://www.cs.adfa.edu.au/~rim/CEC2003/Draft-Program.htm">CEC2003 Program</a></p>
-<p>Session W2-S04: E: Evolutionary Intelligent Systems
-Wednesday, December 10, 10:00AM-12:00PM, Room: CR-4
-<em>11:36AM Ants can play prisoner's dilemma [#1151]</em>
-<strong>Yuce Tekol</strong> and Adnan Acan</strong></p>
+	<p><a href="http://nats.io">NATS messaging system</a> has a text based <a href="http://nats.io/documentation/internals/nats-protocol/">protocol</a> which is pretty fun and easy to play with.
+Since <em>gnatsd</em> (NATS server) talks in TCP using this text protocol, you can just <code>telnet</code> (or <code>nc</code>) into it to deal with the protocol directly.
+You can have a look at a sample session <a href="http://nats.io/documentation/internals/nats-protocol-demo/">here</a>.</p>
+<p><strong>Btw, using telnet confuses new starters, because telnet is also a different protocol</strong></p>
+<p>Although telnet (or nc) is pretty prevalent and easy to work with, you start to experience its shortcomings very quickly.
+One of the first things you will realize is, you can't leave your telnet session open wihout interacting with it every few minutes.
+gnatsd sends <code>PING</code> messages to the clients periodically to check whether they are active.
+If a client fails to respond with <code>PONG</code> for a few <code>PING</code>s in a row, gnatsd cuts the connection to that client.
+You can read about this important optimization <a href="http://nats.io/documentation/server/gnatsd-prune/">here</a>.
+So, in order to keep your telnet session to gnatsd open, you have to type <code>PONG</code> once every 2-3 minutes.</p>
+<p>Keeping your telnet session alive is cumbersome but managable, as long as it is short.
+What telnet can't do is, connecting to a gnatsd server which requires <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a>.</p>
+<p>gnatsd uses TLS to secure the traffic between itself and its clients.</p>
+<p><strong>The importance of text based tools on UNIX</strong></p>
 </div>
             <footer>
                 <p class="footer">&copy; 2003-2016 Yüce Tekol</p>
